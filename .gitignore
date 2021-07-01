@@ -1,0 +1,14 @@
+# idea
+.idea
+**/*.iml
+
+# gradle specific
+.gradle
+
+# build directories
+build
+out
+
+# MacOS
+**/.DS_Store
+
