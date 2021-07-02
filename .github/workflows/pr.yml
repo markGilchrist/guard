@@ -1,0 +1,39 @@
+name: "Build and Test"
+
+on:
+  pull_request:
+    branches:
+      - '**'
+    paths:
+      - 'src/**'
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'src/**'
+
+jobs:
+  build-test-analyse:
+    name: "Build and Test"
+    runs-on: ubuntu-latest
+    container:
+      image: "gradle:7.1"
+      credentials:
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    timeout-minutes: 30
+    steps:
+      - name: "Checkout Source"
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: "Cache Gradle packages"
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+
+      - name: "Run Tests"
+        run: gradle --no-daemon --no-scan --no-watch-fs clean build test

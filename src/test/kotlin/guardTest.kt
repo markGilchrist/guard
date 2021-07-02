@@ -1,7 +1,9 @@
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.assertEquals
 
 internal class GuardKtTest {
+
 
     @Test
     fun `guard p1 is null, p2 is null returns null`() {
@@ -10,10 +12,10 @@ internal class GuardKtTest {
         val p2 = null
 
         // act
-        val result = guard(p1, p2) { a1, a2 -> "$a1 - $a2" }
+        val result = guard(p1, p2) { a1, a2 -> "${a1} - ${a2}" }
 
         // assert
-        assertEquals(null, result)
+        assertNull(result)
     }
 
     @Test
@@ -23,10 +25,10 @@ internal class GuardKtTest {
         val p2 = "world"
 
         // act
-        val result = guard(p1, p2) { a1, a2 -> "$a1 - $a2" }
+        val result = guard(p1, p2) { a1, a2 -> "${a1} - ${a2}" }
 
         // assert
-        assertEquals(null, result)
+        assertNull(result)
     }
 
     @Test
@@ -39,7 +41,8 @@ internal class GuardKtTest {
         val result = guard(p1, p2) { a1, a2 -> "$a1 - $a2" }
 
         // assert
-        assertEquals(null, result)
+        assertNull(result)
+
     }
 
     @Test
@@ -63,9 +66,10 @@ internal class GuardKtTest {
         val condition = false
 
         // act
-        val result = guard(p1, p2,condition) { a1, a2 -> "$a1 - $a2" }
+        val result = guard(p1, p2, condition) { a1, a2 -> "$a1 - $a2" }
+
         // assert
-        assertEquals(null, result)
+        assertNull(result)
     }
 
     @Test
@@ -76,36 +80,9 @@ internal class GuardKtTest {
         val condition = true
 
         // act
-        val result = guard(p1, p2,condition) { a1, a2 -> "$a1 - $a2" }
+        val result = guard(p1, p2, condition) { a1, a2 -> "$a1 - $a2" }
         // assert
         assertEquals("hello - world", result)
     }
 
-    @Test
-    fun testGuard() {
-    }
-
-    @Test
-    fun testGuard1() {
-    }
-
-    @Test
-    fun testGuard2() {
-    }
-
-    @Test
-    fun testGuard3() {
-    }
-
-    @Test
-    fun testGuard4() {
-    }
-
-    @Test
-    fun testGuard5() {
-    }
-
-    @org.junit.jupiter.api.Test
-    fun testGuard6() {
-    }
 }
